@@ -1,0 +1,36 @@
+<style lang="less">
+  .hello{}
+</style>
+<template>
+  <Row align="center" justify="center">
+    <Col>col1</Col>
+    <Col>col2</Col>
+  </Row>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  import Row from '../components/row';
+  import Col from '../components/col';
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test'
+    }
+    components = {
+      Row,Col
+    }
+
+    data = {
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+    }
+  }
+</script>
