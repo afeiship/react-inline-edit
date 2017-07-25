@@ -3,19 +3,35 @@
 </style>
 
 <template>
-    <view class="classNames(row row-{{ align }} row-justify-{{ justify }} {{ className }})">
-        <slot></slot>
+    <view class="row to-align-test {{ this.toAlign(align) }} row-justify-{{ justify }} {{ className }}">
+      <slot></slot>
     </view>
 </template>
+
 <script>
     import wepy from 'wepy';
-    import className from 'classnames';
 
     export default class extends wepy.component {
-        data = {
-          className: String,
-          align: 'center',
-          justify: 'start',
+
+        props = {
+          className: {
+            type: String,
+            default: ''
+          },
+          align: {
+            type: String
+          },
+          justify: {
+            type: String,
+            default: 'start'
+          },
+        }
+
+        methods = {
+          toAlign(inValue){
+            console.log(inValue);
+            return inValue ? `row-${inValue}` : '';
+          }
         }
     }
 </script>

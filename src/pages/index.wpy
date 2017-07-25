@@ -2,24 +2,30 @@
   .hello{}
 </style>
 <template>
-  <Row align="center" justify="center">
-    <Col>col1</Col>
-    <Col>col2</Col>
-  </Row>
+  <view class="hello-flexbox-grid">
+    <Row justify="center" className="test-ext-class">
+      <Col>col1</Col>
+      <Col>col2</Col>
+      <Col>col3</Col>
+    </Row>
+  </view>
 </template>
 
 <script>
   import wepy from 'wepy';
-  import Row from '../components/row';
-  import Col from '../components/col';
-  // import {Row,Col} from '../components/index';
+  // import Row from '../components/row';
+  // import Col from '../components/col';
+  import { Row,Col } from '../components/index';
 
   export default class Index extends wepy.page {
+
     config = {
       navigationBarTitleText: 'test'
     }
+
     components = {
-      Row,Col
+      Row,
+      Col
     }
 
     data = {
