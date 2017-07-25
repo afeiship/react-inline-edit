@@ -12,6 +12,7 @@
   import wepy from 'wepy';
   import Row from '../components/row';
   import Col from '../components/col';
+  // import {Row,Col} from '../components/index';
 
   export default class Index extends wepy.page {
     config = {

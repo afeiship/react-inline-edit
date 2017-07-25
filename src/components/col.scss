@@ -15,38 +15,6 @@ $width-list:(
   100:100
 );
 
-
-.row{
-  display:flex;
-  flex-direction: row;
-  width:100%;
-
-  &-top{
-    align-items: flex-start;
-  }
-  &-center{
-    align-items: center;
-  }
-  &-bottom{
-    align-items: flex-end;
-  }
-  &-justify-center{
-    justify-content: center;
-  }
-  &-justify-stretch{
-    justify-content: stretch;
-  }
-  &-justify-between{
-    justify-content: space-between;
-  }
-  &-justify-around{
-    justify-content: space-around;
-  }
-}
-
-
-
-
 .col{
   flex:1;
   display: block;

@@ -1,5 +1,5 @@
 <style lang="sass">
-    @import './style'
+    @import './row'
 </style>
 
 <template>
@@ -10,11 +10,12 @@
 <script>
     import wepy from 'wepy';
     import className from 'classnames';
+
     export default class extends wepy.component {
         data = {
-            className: String,
-            align: String,
-            justify: String,
+          className: String,
+          align: 'center',
+          justify: 'start',
         }
     }
 </script>

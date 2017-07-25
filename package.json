@@ -2,16 +2,16 @@
   "name": "wepy-flexbox-grid",
   "version": "0.0.1",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "wepy build --watch",
-    "build": "cross-env NODE_ENV=production wepy build --no-cache"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:wepyjs/wepy-com-toast.git"
+    "url": "git@github.com:afeiship/wepy-flexbox-grid.git"
   },
-  "author": "Gcaufy",
+  "author": "afei",
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^7.2.1",
