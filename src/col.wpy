@@ -1,0 +1,20 @@
+<style lang="sass">
+    @import './style'
+</style>
+
+<template>
+    <view class="classNames(col col-{{ align }} col-offset-{{ offset }} {{ className }})">
+        <slot></slot>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy';
+    import className from 'classnames';
+    export default class extends wepy.component {
+        data = {
+            className: String,
+            align: String,
+            offset: String,
+        }
+    }
+</script>
