@@ -11,14 +11,13 @@
 
 <script>
   import wepy from 'wepy';
-  // import Row from '../components/row';
-  // import Col from '../components/col';
-  import { Row,Col } from '../components/index';
+  import Row from '../components/row';
+  import Col from '../components/col';
 
-  export default class Index extends wepy.page {
+  export default class extends wepy.page {
 
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: 'wepy-flexbox-grid demo'
     }
 
     components = {

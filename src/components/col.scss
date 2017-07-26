@@ -19,20 +19,24 @@ $width-list:(
   flex:1;
   display: block;
   width: 100%;
+
+  &-top {
+    align-self: flex-start;
+  }
+
+  &-bottom {
+    align-self: flex-end;
+  }
+
+  &-center {
+    align-self: center;
+  }
+
+  &-stretch {
+    align-self: stretch;
+  }
 }
 
-.col-top {
-  align-self: flex-start;
-}
-.col-bottom {
-  align-self: flex-end;
-}
-.col-center {
-  align-self: center;
-}
-.col-stretch {
-  align-self: stretch;
-}
 
 
 /* Column Offsets */

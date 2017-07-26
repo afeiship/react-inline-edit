@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "wepy build --watch",
+    "clean":"gulp clean",
+    "dev": "npm run clean && wepy build --watch",
     "build": "gulp build"
   },
   "repository": {
