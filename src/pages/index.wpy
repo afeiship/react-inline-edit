@@ -2,13 +2,11 @@
   .hello{}
 </style>
 <template>
-  <view class="hello-flexbox-grid">
     <Row justify="center" className="test-ext-class">
       <Col>col1</Col>
       <Col>col2</Col>
       <Col>col3</Col>
     </Row>
-  </view>
 </template>
 
 <script>

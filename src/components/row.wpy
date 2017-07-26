@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <view class="row to-align-test {{ this.toAlign(align) }} row-justify-{{ justify }} {{ className }}">
+    <view class="row {{ align }} row-justify-{{ justify }} {{ className }}">
       <slot></slot>
     </view>
 </template>
