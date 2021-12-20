@@ -14,29 +14,36 @@ npm install -S @jswork/react-inline-edit
 ## usage
 1. import css
   ```scss
-  @import "~@jswork/boilerplate-react-component/dist/style.css";
+  @import "~@jswork/react-inline-edit/dist/style.css";
 
   // or use sass
-  @import "~@jswork/boilerplate-react-component/dist/style.scss";
+  @import "~@jswork/react-inline-edit/dist/style.scss";
 
   // customize your styles:
-  $boilerplate-react-component-options: ()
+  $react-inline-edit-options: ()
   ```
 2. import js
   ```js
-  import React from 'react';
-  import ReactInlineEdit from '@jswork/boilerplate-react-component';
+  import React, { useState, useEffect } from 'react';
+  import ReactInlineEdit from '@jswork/react-inline-edit';
   import styled from 'styled-components';
+  import '../../src/components/style.scss';
 
   const Container = styled.div`
     width: 80%;
     margin: 30px auto 0;
   `;
 
-  export default (props: any) => {
+  export default () => {
+    const [value, setValue] = useState('Hello inline edit');
+
+    useEffect(() => {
+      console.log('value changed:', value);
+    }, [value]);
+
     return (
       <Container>
-        <ReactInlineEdit />
+        <ReactInlineEdit value={value} onChange={(e) => setValue(e.target.value)} />
       </Container>
     );
   };
