@@ -88,9 +88,9 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
 
     return (
       <div data-component={CLASS_NAME} className={classNames(CLASS_NAME, className)} {...props}>
-        <div hidden={editing} className="is-label" onDoubleClick={this.handleDblClick}>
+        <label hidden={editing} className="is-label" onDoubleClick={this.handleDblClick}>
           {value}
-        </div>
+        </label>
         <ReactInputAutosize
           hidden={!editing}
           type="text"

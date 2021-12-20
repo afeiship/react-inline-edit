@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactInlineEdit from '../../src/main';
 import styled from 'styled-components';
+import '../../src/components/style.scss';
 
 const Container = styled.div`
   width: 80%;
