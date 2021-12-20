@@ -2,7 +2,7 @@
   "name": "@jswork/react-inline-edit",
   "boilerplate": "react-inline-edit",
   "homepage": "https://js.work",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Inline editing for react.",
   "license": "MIT",
   "main": "dist/index.js",
