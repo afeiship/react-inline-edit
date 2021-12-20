@@ -63,7 +63,10 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
   }
 
   start = () => {
-    this.setState({ editing: true });
+    this.setState({ editing: true }, () => {
+      const inputEl = this.rootRef.current?.querySelector('input') as HTMLInputElement;
+      inputEl.focus();
+    });
   };
 
   editing = (inValue) => {
