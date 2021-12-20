@@ -1,10 +1,13 @@
 import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component } from 'react';
+import ReactInputAutosize from 'react-input-autosize';
 
 const CLASS_NAME = 'react-inline-edit';
 
-export type ReactInlineEditProps = {
+type BaseProps = Omit<React.AllHTMLAttributes<HTMLElement>, 'onChange'>;
+
+export interface ReactInlineEditProps extends BaseProps {
   /**
    * The extended className for component.
    */
@@ -17,7 +20,7 @@ export type ReactInlineEditProps = {
    * The change handler.
    */
   onChange?: Function;
-};
+}
 
 export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
   static displayName = CLASS_NAME;
@@ -26,9 +29,10 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
     onChange: noop
   };
 
+  private confirmedValue = this.props.value;
+
   state = {
     value: this.props.value,
-    editingValue: this.props.value,
     editing: false
   };
 
@@ -37,24 +41,26 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
   };
 
   editing = (inValue) => {
-    this.setState({ editingValue: inValue });
+    this.setState({ value: inValue });
   };
 
   confirm = () => {
     const { onChange } = this.props;
-    const value = this.state.editingValue;
-    this.setState({ value, editing: false });
+    const { value } = this.state;
+    this.confirmedValue = value;
+    this.setState({ editing: false });
     onChange!({ target: { value } });
   };
 
   cancel = () => {
-    this.setState({ editing: false, editingValue: this.state.value });
+    this.setState({ editing: false, value: this.confirmedValue });
   };
 
   shouldComponentUpdate(nextProps: Readonly<ReactInlineEditProps>): boolean {
     const { value } = nextProps;
     if (value !== this.props.value) {
-      if (value !== this.state.value) {
+      if (value !== this.confirmedValue) {
+        this.confirmedValue = value;
         this.setState({ value });
       }
     }
@@ -72,31 +78,26 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
 
   handleInputKeyUp = (inEvent) => {
     const { key } = inEvent;
-    if (key === 'Enter') {
-      this.confirm();
-    }
-  };
-
-  handleBlur = () => {
-    this.cancel();
+    if (key === 'Enter') this.confirm();
+    if (key === 'Escape') this.cancel();
   };
 
   render() {
     const { className, onChange, children, ...props } = this.props;
-    const { editingValue, editing } = this.state;
+    const { value, editing } = this.state;
 
     return (
       <div data-component={CLASS_NAME} className={classNames(CLASS_NAME, className)} {...props}>
         <div hidden={editing} className="is-label" onDoubleClick={this.handleDblClick}>
-          {editingValue}
+          {value}
         </div>
-        <input
+        <ReactInputAutosize
           hidden={!editing}
           type="text"
-          value={editingValue}
+          value={value}
           onChange={this.handleInputChange}
           onKeyUp={this.handleInputKeyUp}
-          onBlur={this.handleBlur}
+          onBlur={this.cancel}
         />
       </div>
     );

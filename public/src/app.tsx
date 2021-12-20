@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactInlineEdit from '../../src/main';
 import styled from 'styled-components';
 
@@ -9,6 +9,11 @@ const Container = styled.div`
 
 export default () => {
   const [value, setValue] = useState('Hello inline edit');
+
+  useEffect(() => {
+    console.log('value changed:', value);
+  }, [value]);
+
   return (
     <Container>
       <ReactInlineEdit value={value} onChange={(e) => setValue(e.target.value)} />
