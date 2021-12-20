@@ -1,6 +1,6 @@
 import noop from '@jswork/noop';
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import ReactInputAutosize from 'react-input-autosize';
 
 const CLASS_NAME = 'react-inline-edit';
@@ -34,11 +34,33 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
   };
 
   private confirmedValue = this.props.value;
+  private rootRef = createRef<HTMLDivElement>();
 
   state = {
     value: this.props.value,
     editing: false
   };
+
+
+  constructor(inProps) {
+    super(inProps);
+    window.addEventListener('click', this.docClick);
+  }
+
+  shouldComponentUpdate(nextProps: Readonly<ReactInlineEditProps>): boolean {
+    const { value } = nextProps;
+    if (value !== this.props.value) {
+      if (value !== this.confirmedValue) {
+        this.confirmedValue = value;
+        this.setState({ value });
+      }
+    }
+    return true;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.docClick);
+  }
 
   start = () => {
     this.setState({ editing: true });
@@ -60,16 +82,11 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
     this.setState({ editing: false, value: this.confirmedValue });
   };
 
-  shouldComponentUpdate(nextProps: Readonly<ReactInlineEditProps>): boolean {
-    const { value } = nextProps;
-    if (value !== this.props.value) {
-      if (value !== this.confirmedValue) {
-        this.confirmedValue = value;
-        this.setState({ value });
-      }
-    }
-    return true;
-  }
+  docClick = (inEvent) => {
+    const { target } = inEvent;
+    const root = this.rootRef.current;
+    if (target.contains(root)) this.cancel();
+  };
 
   handleDblClick = () => {
     this.start();
@@ -91,7 +108,7 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
     const { value, editing } = this.state;
 
     return (
-      <div data-component={CLASS_NAME} className={classNames(CLASS_NAME, className)} {...props}>
+      <div ref={this.rootRef} data-component={CLASS_NAME} className={classNames(CLASS_NAME, className)} {...props}>
         <label hidden={editing} className='is-label' onDoubleClick={this.handleDblClick}>
           {value}
         </label>
