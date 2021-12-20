@@ -20,6 +20,10 @@ export interface ReactInlineEditProps extends BaseProps {
    * The change handler.
    */
   onChange?: Function;
+  /**
+   * The inner input classname.
+   */
+  inputClassName?: string;
 }
 
 export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
@@ -83,17 +87,18 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
   };
 
   render() {
-    const { className, onChange, children, ...props } = this.props;
+    const { className, onChange, children, inputClassName, ...props } = this.props;
     const { value, editing } = this.state;
 
     return (
       <div data-component={CLASS_NAME} className={classNames(CLASS_NAME, className)} {...props}>
-        <label hidden={editing} className="is-label" onDoubleClick={this.handleDblClick}>
+        <label hidden={editing} className='is-label' onDoubleClick={this.handleDblClick}>
           {value}
         </label>
         <ReactInputAutosize
+          inputClassName={inputClassName}
           hidden={!editing}
-          type="text"
+          type='text'
           value={value}
           onChange={this.handleInputChange}
           onKeyUp={this.handleInputKeyUp}

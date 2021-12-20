@@ -1,5 +1,16 @@
 .react-inline-edit {
+  [hidden] {
+    display: none !important;
+  }
+
+  > .is-label {
+    display: block;
+  }
+
   input {
     font: inherit;
+    border: none;
+    outline: 1px solid #eee;
+    padding: 0;
   }
 }
