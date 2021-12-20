@@ -1,8 +1,0 @@
-{
-  "git.ignoreLimitWarning": true,
-  "files.associations": {
-    "*.wxml": "html",
-    "*.wxss": "css",
-    "*.wpy": "vue"
-  }
-}

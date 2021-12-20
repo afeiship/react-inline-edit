@@ -1,0 +1,17 @@
+{
+  "git": {
+    "requireCleanWorkingDir": false
+  },
+  "hooks": {
+    "after:init": [
+      "t2k",
+      "npm run docs"
+    ],
+    "after:bump": [
+      "npm run build"
+    ]
+  },
+  "github": {
+    "release": true
+  }
+}
