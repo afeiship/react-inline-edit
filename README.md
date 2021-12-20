@@ -43,7 +43,8 @@ npm install -S @jswork/react-inline-edit
 
     return (
       <Container>
-        <ReactInlineEdit value={value} onChange={(e) => setValue(e.target.value)} />
+        <ReactInlineEdit value={value} inputClassName='test-cls'
+                         onChange={(e) => setValue(e.target.value)} />
       </Container>
     );
   };
