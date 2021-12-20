@@ -95,15 +95,16 @@ export default class ReactInlineEdit extends Component<ReactInlineEditProps> {
         <label hidden={editing} className='is-label' onDoubleClick={this.handleDblClick}>
           {value}
         </label>
-        <ReactInputAutosize
-          inputClassName={inputClassName}
-          hidden={!editing}
-          type='text'
-          value={value}
-          onChange={this.handleInputChange}
-          onKeyUp={this.handleInputKeyUp}
-          onBlur={this.cancel}
-        />
+        {
+          editing && <ReactInputAutosize
+            inputClassName={inputClassName}
+            type='text'
+            value={value}
+            onChange={this.handleInputChange}
+            onKeyUp={this.handleInputKeyUp}
+            onBlur={this.cancel}
+          />
+        }
       </div>
     );
   }
